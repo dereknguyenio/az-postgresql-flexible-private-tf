@@ -14,7 +14,3 @@ variable "environment" {
   default     = "dev"
 }
 
-variable "user_object_id" {
-  description = "The Object ID of the user to whom you want to grant access"
-  type        = string
-}
