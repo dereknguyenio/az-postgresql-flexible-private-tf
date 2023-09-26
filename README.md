@@ -19,8 +19,8 @@ This repository provides Terraform code for deploying an Azure PostgreSQL Flexib
 ### 1. **Clone Repository**
 
 ```bash
-git clone https://github.com/YourOrg/your_repo.git
-cd your_repo
+git clone https://github.com/dereknguyenio/az-postgresql-flexible-private-tf.git
+cd az-postgresql-flexible-private-tf
 ```
 
 ### 2. **Initialize Terraform**
