@@ -4,6 +4,9 @@
 
 This repository provides Terraform code for deploying an Azure PostgreSQL Flexible Server with full VNet integration for enhanced security and data integrity.
 
+## Architecture Diagram :building_construction:
+![Architecture Diagram](./architecture.jpg)
+
 ## 🛠️ Prerequisites
 
 - **Azure Subscription**
