@@ -42,6 +42,15 @@ resource "azurerm_subnet" "default" {
   resource_group_name  = azurerm_resource_group.default.name
   address_prefixes     = ["10.0.2.0/24"]
   service_endpoints    = ["Microsoft.Storage"]
+
+  delegation {
+    name = "delegation"
+
+    service_delegation {
+      name    = "Microsoft.DBforPostgreSQL/flexibleServers"
+      actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+    }
+  }
 }
 
 resource "azurerm_subnet_network_security_group_association" "default" {

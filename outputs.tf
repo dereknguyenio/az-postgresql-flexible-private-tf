@@ -39,3 +39,14 @@ output "virtual_network_name" {
   value = azurerm_virtual_network.default.name
   description = "The name of the Virtual Network."
 }
+
+output "windows_vm_admin_username" {
+  value       = azurerm_windows_virtual_machine.example.admin_username
+  description = "The admin username for the Windows VM."
+}
+
+output "windows_vm_password" {
+  value       = random_password.windows_vm_password.result
+  sensitive   = true
+  description = "The randomly generated admin password for the Windows VM."
+}

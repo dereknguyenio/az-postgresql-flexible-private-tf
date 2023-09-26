@@ -62,6 +62,12 @@ resource "azurerm_network_interface" "example_nic" {
   }
 }
 
+resource "random_password" "windows_vm_password" {
+  length           = 16
+  special          = true
+  override_special = "!@#$%^&*()-_=+[]{}|:"
+}
+
 # Windows VM Configuration
 resource "azurerm_windows_virtual_machine" "example" {
   name                = "example-machine"
@@ -87,6 +93,6 @@ resource "azurerm_windows_virtual_machine" "example" {
   }
 
   admin_username = "adminuser"
-  admin_password = "P@$$w0rd123!"
+  admin_password = random_password.windows_vm_password.result
   computer_name  = "example-machine"
 }
