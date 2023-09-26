@@ -5,7 +5,7 @@
 This repository provides Terraform code for deploying an Azure PostgreSQL Flexible Server with full VNet integration for enhanced security and data integrity.
 
 ## Architecture Diagram :building_construction:
-![Architecture Diagram](./architecture.jpg)
+![Architecture Diagram](./images/architecture.jpg)
 
 ## 🛠️ Prerequisites
 
@@ -64,11 +64,13 @@ Before connecting, retrieve your VM password stored in Azure Key Vault. Open Azu
 
 Important: Your AAD user object id (go to Microsoft Entra ID to find this) must have key access policy permissions to Set, List, and Get secrets from Key Vault in order to see the login/pw information. This is already set for you in Terraform key_vault.tf
 
+![Key Vault Secrets](./images/key_vault_secrets.jpg)
+
 #### 2️⃣ Navigate to Azure Portal
 
 1. Go to the Azure Portal and sign in.
 2. Navigate to **Virtual Machines**.
-3. Select the VM you wish to connect to.
+3. Select the Windows VM deployed through Terraform to connect to via Azure Bastion.
 
 #### 3️⃣ Start Azure Bastion Service
 

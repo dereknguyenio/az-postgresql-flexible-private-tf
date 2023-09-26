@@ -67,14 +67,12 @@ resource "random_password" "windows_vm_password" {
   special          = true
   override_special = "!@#$%^&*()-_=+[]{}|:"
 }
-
 # Windows VM Configuration
 resource "azurerm_windows_virtual_machine" "example" {
   name                = "example-machine"
   resource_group_name = azurerm_resource_group.default.name
   location            = azurerm_resource_group.default.location
   size                = "Standard_DS1_v2"
-  tags                = local.common_tags
 
   network_interface_ids = [
     azurerm_network_interface.example_nic.id
@@ -83,7 +81,7 @@ resource "azurerm_windows_virtual_machine" "example" {
   source_image_reference {
     publisher = "MicrosoftWindowsServer"
     offer     = "WindowsServer"
-    sku       = "2016-Datacenter"
+    sku       = "2022-datacenter-azure-edition"
     version   = "latest"
   }
 
@@ -95,4 +93,19 @@ resource "azurerm_windows_virtual_machine" "example" {
   admin_username = "adminuser"
   admin_password = random_password.windows_vm_password.result
   computer_name  = "example-machine"
+
+  provisioner "remote-exec" {
+    inline = [
+      "Install-WindowsFeature -Name Web-Server",
+      "Invoke-WebRequest -Uri https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v6.3/windows/pgadmin4-6.3-x64.exe -OutFile C:\\temp\\pgadmin4-6.3-x64.exe",
+      "Start-Process -FilePath C:\\temp\\pgadmin4-6.3-x64.exe -Args '/S' -Wait"
+    ]
+
+    connection {
+      type     = "winrm"
+      user     = self.admin_username
+      password = self.admin_password
+      host     = azurerm_public_ip.bastion_public_ip.ip_address
+    }
+  }
 }

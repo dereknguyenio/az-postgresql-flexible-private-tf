@@ -82,7 +82,7 @@ resource "azurerm_postgresql_flexible_server" "default" {
   name                   = "${random_pet.name_prefix.id}-server"
   resource_group_name    = azurerm_resource_group.default.name
   location               = azurerm_resource_group.default.location
-  version                = "13"
+  version                = "15"
   delegated_subnet_id    = azurerm_subnet.default.id
   private_dns_zone_id    = azurerm_private_dns_zone.default.id
   administrator_login    = "adminTerraform"
