@@ -97,6 +97,8 @@ For more information on Azure PostgreSQL Flexible Server, see [Azure Documentati
 
 Note: You may need to run ```terraform refresh``` after infrastructure is deployed to refresh state for subnet delegation
 
+Reference: https://learn.microsoft.com/en-us/azure/developer/terraform/deploy-postgresql-flexible-server-database?tabs=azure-cli
+
 ## 👩‍💼 Authors
 
 - [Derek Nguyen](mailto:dereknguyen@example.com)
